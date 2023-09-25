@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "74148999796",
+    "project_id": "slutprojekt-cbc8f",
+    "storage_bucket": "slutprojekt-cbc8f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:74148999796:android:f69ac0b230169b6ddb9721",
+        "android_client_info": {
+          "package_name": "com.example.slut_projekt"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOi1cD0Dbi8yZkufc3Zw3BfJak0-nIiV4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
