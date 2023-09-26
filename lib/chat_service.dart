@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ChatService {
-  final CollectionReference chatCollection = FirebaseFirestore.instance.collection('chats');
+  final CollectionReference chatCollection =
+      FirebaseFirestore.instance.collection('chats');
 
-  Future<DocumentReference<Object?>> sendMessage(String message, String userId, String userName) async {
+  Future<DocumentReference<Object?>> sendMessage(
+      String message, String userId, String userName) async {
     return await chatCollection.add({
       'message': message,
       'userId': userId,
@@ -16,4 +18,3 @@ class ChatService {
     return chatCollection.orderBy('timestamp', descending: true).snapshots();
   }
 }
-

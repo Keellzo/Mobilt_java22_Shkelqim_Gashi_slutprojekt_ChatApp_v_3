@@ -5,7 +5,6 @@ import 'chat_page.dart';
 import 'chat_service.dart';
 import 'navigation_service.dart';
 
-
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -18,7 +17,6 @@ class _LoginPageState extends State<LoginPage> {
   final _nameController = TextEditingController();
   final _passwordController = TextEditingController();
   final NavigationService _navigationService = locator<NavigationService>();
-
 
   void _signIn() async {
     final name = _nameController.text;
@@ -46,15 +44,36 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
+  Widget _buildPortraitLayout() {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          TextField(
+            controller: _nameController,
+            decoration: const InputDecoration(labelText: 'Username'),
+          ),
+          const SizedBox(height: 16),
+          TextField(
+            controller: _passwordController,
+            decoration: const InputDecoration(labelText: 'Password'),
+            obscureText: true,
+          ),
+          const SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: _signIn,
+            child: const Text('Sign In'),
+          ),
+        ],
+      ),
+    );
+  }
 
-
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Login Page')),
-      body: Padding(
+  Widget _buildLandscapeLayout() {
+    return SingleChildScrollView(
+      child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -77,6 +96,20 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Login Page')),
+      body: OrientationBuilder(
+        builder: (context, orientation) {
+          return (orientation == Orientation.portrait)
+              ? _buildPortraitLayout()
+              : _buildLandscapeLayout();
+        },
       ),
     );
   }
