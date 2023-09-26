@@ -1,10 +1,10 @@
+// Import required packages
 import 'package:flutter/material.dart';
-import 'package:slut_projekt/service_locator.dart';
 import 'auth_service.dart';
 import 'chat_page.dart';
 import 'chat_service.dart';
-import 'navigation_service.dart';
 
+// LoginPage widget declaration
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -13,37 +13,47 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  // Initialize the AuthService instance to handle authentication
   final AuthService _authService = AuthService();
+
+  // Text controllers for username and password input fields
   final _nameController = TextEditingController();
   final _passwordController = TextEditingController();
-  final NavigationService _navigationService = locator<NavigationService>();
 
+
+
+  // Method to handle the Sign-In functionality
   void _signIn() async {
     final name = _nameController.text;
     final password = _passwordController.text;
 
-    bool result = await _authService.signInWithUserName(name, password);  // Expect a bool
+    // Use the AuthService class to perform the sign-in
+    // This might interact with an API endpoint to validate user credentials
+    bool result = await _authService.signInWithUserName(name, password);
 
+    // Evaluate the result of the authentication
     if (result) {
       print("Successfully signed in");
 
-      // Navigate to chat page
+      // Navigate to the ChatPage if sign-in is successful
+      // Likely to use user's ID and username from API response in a real-world scenario
       Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => ChatPage(
-            userId: 'someDynamicUserIdHere',  // Replace with the real user ID
-            username: name,  // Using the 'name' variable to pass the username
+            userId: 'someDynamicUserIdHere',
+            username: name,
             chatService: ChatService(),
           ),
         ),
       );
     } else {
       print("Failed to sign in");
-      // Show error dialog or snackbar
+      // Display an error message (perhaps using a Snackbar or Dialog)
     }
   }
 
+  // Build UI for portrait orientation
   Widget _buildPortraitLayout() {
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -71,6 +81,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  // Build UI for landscape orientation
   Widget _buildLandscapeLayout() {
     return SingleChildScrollView(
       child: Padding(
