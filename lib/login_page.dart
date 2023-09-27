@@ -20,8 +20,6 @@ class _LoginPageState extends State<LoginPage> {
   final _nameController = TextEditingController();
   final _passwordController = TextEditingController();
 
-
-
   // Method to handle the Sign-In functionality
   void _signIn() async {
     final name = _nameController.text;
@@ -48,8 +46,11 @@ class _LoginPageState extends State<LoginPage> {
         ),
       );
     } else {
-      print("Failed to sign in");
-      // Display an error message (perhaps using a Snackbar or Dialog)
+      SnackBar snackBar = const SnackBar(
+        content: Text('Invalid credentials'),
+        duration: Duration(seconds: 3),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
   }
 

@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class ChatService {
   // Create a reference to the 'chats' collection in Firestore
   final CollectionReference chatCollection =
-  FirebaseFirestore.instance.collection('chats');
+      FirebaseFirestore.instance.collection('chats');
 
   // Function to send a message to Firestore
   Future<DocumentReference<Object?>> sendMessage(
